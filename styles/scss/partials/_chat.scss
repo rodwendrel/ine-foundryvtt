@@ -1,0 +1,46 @@
+// styles/scss/partials/_chat.scss
+
+.chat-card.ine {
+  background: $color-background-secondary;
+  border: 1px solid $color-background-primary;
+  border-left: 3px solid $color-accent;
+  border-radius: 5px;
+
+  .card-header h3 {
+    font-family: $font-primary;
+    font-size: 1.2em;
+    border-bottom: 1px solid $color-accent;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .roll-group {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .roll-label {
+    font-weight: bold;
+  }
+
+  .roll-formula {
+    font-size: 0.9em;
+    color: #aaa;
+    justify-self: end;
+  }
+
+  .roll-total {
+    grid-column: span 2;
+    background: $color-background-primary;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 5px;
+    border: 1px solid $color-accent;
+    border-radius: 3px;
+  }
+}

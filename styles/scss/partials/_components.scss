@@ -92,4 +92,37 @@
     height: 150px;
     resize: vertical;
   }
+
+  .quick-attacks-list {
+    margin-top: 15px; // Adiciona espaço acima da secção
+    
+    h3 {
+      text-align: center;
+      border-bottom: 1px solid $color-accent;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+    }
+  
+    .item-row, .item-row-empty {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      background: $color-background-secondary;
+      border-radius: 3px;
+      margin-top: 5px;
+    }
+  
+    .item-row-empty {
+      justify-content: center;
+      font-style: italic;
+      color: lighten($color-text-primary, 10%);
+    }
+  
+    .item-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
 }

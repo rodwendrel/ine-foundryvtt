@@ -6,12 +6,16 @@
     <nav class="sheet-tabs tabs sidebar" data-group="primary">
       <a class="item" data-tab="main">Principal</a>
       <a class="item" data-tab="description">Descrição</a>
+      <a class="item" data-tab="equipment">Equipamento</a>
+
     </nav>
 
     <div class="tab-content main-content">
       {{> "systems/ine/templates/partials/_actor-main-tab.hbs"}}
 
       {{> "systems/ine/templates/partials/_actor-description-tab.hbs"}}
+
+      {{> "systems/ine/templates/partials/_actor-equipment-tab.hbs"}}
     </div>
   </section>
 </form>

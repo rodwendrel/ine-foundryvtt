@@ -3,7 +3,8 @@
   <div class="attributes-list">
     {{#each system.attributes as |attribute key|}}
     <div class="attribute-row">
-      <label class="attribute-label rollable" data-roll-type="attribute" data-roll-key="{{key}}">{{key}}</label>
+      <label class="attribute-label rollable" data-roll-type="attribute"
+        data-roll-key="{{key}}">{{attribute.label}}</label>
       <input type="text" name="system.attributes.{{key}}.value" value="{{attribute.value}}" data-dtype="Number" />
       <span class="attribute-mod">{{numberFormat attribute.mod decimals=0 sign=true}}</span>
     </div>
@@ -20,7 +21,6 @@
           <input type="text" name="system.pv.max" value="{{system.pv.max}}" data-dtype="Number" />
         </div>
       </div>
-
       <div class="stat-row vertical-stat">
         <label>Pontos de Sanidade</label>
         <div class="value-group">
@@ -34,15 +34,28 @@
     <div class="stat-resources">
       <div class="stat-row vertical-stat">
         <label>Defesa</label>
-        <input type="text" name="system.defesa.total" value="{{system.defesa.total}}" data-dtype="Number" disabled />
-
+        <span class="stat-value">{{system.defesa.total}}</span>
       </div>
-
       <div class="stat-row vertical-stat">
         <label>Sintonia</label>
-        <input type="text" name="system.sintonia.value" value="{{system.sintonia.value}}" data-dtype="Number"
-          disabled />
+        <span class="stat-value">{{system.sintonia.value}}</span>
       </div>
+    </div>
+    
+    <div class="quick-attacks-list">
+      <h3>Acesso Rápido</h3>
+      {{#each equippedWeapons as |item id|}}
+      <div class="item item-row" data-item-id="{{item._id}}">
+        <div class="item-name">
+          <img src="{{item.img}}" width="24" height="24" />
+          {{item.name}} ({{item.system.damage}})
+        </div>
+        <a class="item-control item-roll-attack" title="Rolar Ataque"><i class="ra ra-sword"></i> Atacar</a>
+      </div>
+      {{/each}}
+      {{#if (eq equippedWeapons.length 0)}}
+      <div class="item-row-empty">Nenhuma arma equipada</div>
+      {{/if}}
     </div>
   </div>
 

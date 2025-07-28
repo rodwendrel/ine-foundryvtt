@@ -1,22 +1,22 @@
-/**
- * Define a classe base para os Atores do sistema InE.
- */
+// modules/documents/actor.js
 export class InEActor extends Actor {
 
   /**
-   * Substituímos o método prepareBaseData do Ator.
+   * Prepara os dados base que não dependem de itens.
    * @override
    */
   prepareBaseData() {
-    // Primeiro, executamos a preparação de dados original do Foundry, por segurança.
     super.prepareBaseData();
-
-    // A LIGAÇÃO MANUAL E DEFINITIVA:
-    // Como a chamada 'super' não está a acionar a preparação de dados
-    // do nosso sistema, nós chamamo-la aqui explicitamente.
-    // 'this.system' é a instância do nosso InECharacterData, que contém o método
-    // que queremos executar.
     this.system.prepareBaseData(); 
   }
 
+  /**
+   * Prepara os dados derivados, que dependem dos itens.
+   * @override
+   */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    // Passa a lista de itens do ator para a função de cálculo.
+    this.system.prepareDerivedData(this.items);
+  }
 }

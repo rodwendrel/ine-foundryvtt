@@ -21,11 +21,15 @@
   ],
   "documentTypes": {
     "Actor": {
-      "character": {
-      }
+      "character": {}
+    },
+    "Item": {
+      "habilidade": {},
+      "item": {},
+      "arma": {},
+      "armadura": {}
     }
   },
-  "actorTypes": ["character"],
   "packs": [],
   "languages": [],
   "gridDistance": 1,
@@ -34,8 +38,17 @@
   "secondaryTokenAttribute": "san",
   "flags": {
     "hotReload": {
-      "extensions": ["css", "hbs", "json", "scss"],
-      "paths": ["css/ine.css", "templates", "lang"]
+      "extensions": [
+        "css",
+        "hbs",
+        "json",
+        "scss"
+      ],
+      "paths": [
+        "templates",
+        "lang",
+        "styles"
+      ]
     }
   }
 }

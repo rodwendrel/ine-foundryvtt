@@ -1,0 +1,45 @@
+<div class="tab equipment" data-group="primary" data-tab="equipment">
+  <h3 class="item-section-header">Equipamento de Combate</h3>
+  <ol class="items-list">
+    {{#each equipment as |item id|}}
+    <li class="item flexrow" data-item-id="{{item._id}}">
+      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+      <div class="item-name">
+        <h4>{{item.name}}</h4>
+      </div>
+      {{#if (eq item.type "arma")}}
+      <a class="item-control item-roll-attack" title="Rolar Ataque"><i class="ra ra-sword"></i> Atacar</a>
+      {{/if}}
+      <div class="item-controls">
+        <a class="item-control item-toggle-equipped {{#if item.system.equipped}}active{{/if}}"
+          title="Equipar/Desequipar"><i class="fas fa-shield-alt"></i></a>
+        <a class="item-control item-edit" title="Editar Item"><i class="fas fa-edit"></i></a>
+        <a class="item-control item-delete" title="Apagar Item"><i class="fas fa-trash"></i></a>
+      </div>
+    </li>
+    {{/each}}
+  </ol>
+
+  <h3 class="item-section-header">Inventário</h3>
+  <ol class="items-list">
+    <li class="item flexrow item-header">
+      <div class="item-name">Itens Gerais</div>
+      <div class="item-controls">
+        <a class="item-control item-create" title="Criar Item" data-type="item"><i class="fas fa-plus"></i>
+          Adicionar</a>
+      </div>
+    </li>
+    {{#each inventory as |item id|}}
+    <li class="item flexrow" data-item-id="{{item._id}}">
+      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
+      <div class="item-name">
+        <h4>{{item.name}}</h4>
+      </div>
+      <div class="item-controls">
+        <a class="item-control item-edit" title="Editar Item"><i class="fas fa-edit"></i></a>
+        <a class="item-control item-delete" title="Apagar Item"><i class="fas fa-trash"></i></a>
+      </div>
+    </li>
+    {{/each}}
+  </ol>
+</div>
