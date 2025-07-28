@@ -1,0 +1,41 @@
+{
+  "id": "ine",
+  "title": "Infames & Enfermos",
+  "description": "Sistema de jogo para a campanha Herdeiros do Abismo.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "Seu Nome Aqui"
+    }
+  ],
+  "esmodules": [
+    "modules/ine.js"
+  ],
+  "styles": [
+    "assets/vendor/rpg-awesome/css/rpg-awesome.css",
+    "styles/css/ine.css"
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {
+      }
+    }
+  },
+  "actorTypes": ["character"],
+  "packs": [],
+  "languages": [],
+  "gridDistance": 1,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "pv",
+  "secondaryTokenAttribute": "san",
+  "flags": {
+    "hotReload": {
+      "extensions": ["css", "hbs", "json", "scss"],
+      "paths": ["css/ine.css", "templates", "lang"]
+    }
+  }
+}

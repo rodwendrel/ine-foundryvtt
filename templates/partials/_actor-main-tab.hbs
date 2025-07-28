@@ -1,0 +1,49 @@
+<div class="tab main active" data-group="primary" data-tab="main">
+
+  <div class="attributes-list">
+    {{#each system.attributes as |attribute key|}}
+    <div class="attribute-row">
+      <label class="attribute-label rollable" data-roll-type="attribute" data-roll-key="{{key}}">{{key}}</label>
+      <input type="text" name="system.attributes.{{key}}.value" value="{{attribute.value}}" data-dtype="Number" />
+      <span class="attribute-mod">{{numberFormat attribute.mod decimals=0 sign=true}}</span>
+    </div>
+    {{/each}}
+  </div>
+
+  <div class="stats-list">
+    <div class="stat-resources">
+      <div class="stat-row vertical-stat">
+        <label>Pontos de Vida</label>
+        <div class="value-group">
+          <input type="text" name="system.pv.value" value="{{system.pv.value}}" data-dtype="Number" />
+          <span>/</span>
+          <input type="text" name="system.pv.max" value="{{system.pv.max}}" data-dtype="Number" />
+        </div>
+      </div>
+
+      <div class="stat-row vertical-stat">
+        <label>Pontos de Sanidade</label>
+        <div class="value-group">
+          <input type="text" name="system.san.value" value="{{system.san.value}}" data-dtype="Number" />
+          <span>/</span>
+          <span class="stat-value">{{system.san.totalMax}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-resources">
+      <div class="stat-row vertical-stat">
+        <label>Defesa</label>
+        <input type="text" name="system.defesa.total" value="{{system.defesa.total}}" data-dtype="Number" disabled />
+
+      </div>
+
+      <div class="stat-row vertical-stat">
+        <label>Sintonia</label>
+        <input type="text" name="system.sintonia.value" value="{{system.sintonia.value}}" data-dtype="Number"
+          disabled />
+      </div>
+    </div>
+  </div>
+
+</div>

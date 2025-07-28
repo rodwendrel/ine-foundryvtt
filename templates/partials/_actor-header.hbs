@@ -1,0 +1,16 @@
+<header class="sheet-header">
+  <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+  <div class="header-fields">
+    <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Nome do Personagem" /></h1>
+    <div class="char-details grid grid-2col">
+      <div class="char-detail">
+        <label>Ocupação</label>
+        <input type="text" name="system.details.ocupacao" value="{{system.details.ocupacao}}" data-dtype="String" />
+      </div>
+      <div class="char-detail">
+        <label>Origem</label>
+        <input type="text" name="system.details.origem" value="{{system.details.origem}}" data-dtype="String" />
+      </div>
+    </div>
+  </div>
+</header>

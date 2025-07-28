@@ -1,0 +1,37 @@
+// ===== Main Sheet Layout (Right Sidebar) =====
+
+.ine.sheet.actor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .sheet-body {
+    flex-grow: 1;
+    padding: 10px;
+    display: grid;
+    
+    grid-template-areas: "content sidebar";
+    grid-template-columns: 1fr auto; // Conteúdo à esquerda, barra lateral à direita
+    gap: 15px;
+
+    .main-content {
+      grid-area: content;
+    }
+    .sidebar {
+      grid-area: sidebar;
+    }
+
+    .tab-content {
+      > .tab { display: none; }
+      > .tab.active { display: block; }
+    }
+
+    .tab.main {
+      &.active {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+    }
+  }
+}

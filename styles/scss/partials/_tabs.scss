@@ -1,0 +1,33 @@
+// ===== Tabs (Vertical Sidebar Style) =====
+
+.ine .tabs.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: absolute;
+  left: 98.97%;
+
+  .item {
+    background: $color-background-tertiary;
+    border: 1px solid $color-background-secondary;
+    border-radius: 3px;
+    padding: 10px 5px;
+    font-weight: bold;
+    color: $color-text-primary;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    
+    &.active {
+      background: $color-accent;
+      color: #fff;
+      border-right: 5px solid lighten($color-accent, 20%);
+    }
+
+    &:hover {
+      border-color: $color-accent-hover;
+      cursor: pointer;
+      color: $color-accent-hover;
+    }
+  }
+}

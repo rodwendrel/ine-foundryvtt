@@ -1,0 +1,85 @@
+/* .ine .window-content {
+  background: #2d2d2d;
+  color: #e0e0e0;
+  font-family: 'Marcellus SC', serif;
+}
+
+.ine .sheet-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.ine .profile-img {
+  height: 100px;
+  width: 100px;
+  border: 2px solid #a52a2a;
+}
+
+.ine .charname input {
+  width: 100%;
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+  border: none;
+  background: none;
+  color: #e0e0e0;
+  border-bottom: 2px solid #a52a2a;
+}
+
+.ine .tabs .item {
+  background: #4d4d4d;
+  border: 1px solid #a52a2a;
+}
+
+.ine .tabs .item.active {
+  background: #a52a2a;
+  color: #fff;
+  text-shadow: none;
+}
+
+.ine .grid {
+  display: grid;
+}
+.ine .grid-3col {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.ine .attribute-row, .ine .stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background: #4d4d4d;
+  border-left: 3px solid #a52a2a;
+  margin-bottom: 5px;
+}
+
+.ine .attribute-label.rollable {
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.ine .attribute-label.rollable:hover {
+  color: #ff6347;
+}
+
+.ine input[type="text"] {
+  background: #2d2d2d;
+  color: #e0e0e0;
+  border: 1px solid #a52a2a;
+  text-align: center;
+  width: 50px;
+}
+
+.ine textarea {
+  width: 100%;
+  height: 200px;
+  background: #2d2d2d;
+  color: #e0e0e0;
+  border: 1px solid #a52a2a;
+} */

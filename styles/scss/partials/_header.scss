@@ -1,0 +1,33 @@
+// ===== Sheet Header =====
+
+.ine .sheet-header {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  border-bottom: 2px solid $color-background-secondary;
+
+  .profile-img {
+    height: 120px;
+    width: 120px;
+    border: 2px solid $color-accent;
+    flex-shrink: 0;
+  }
+
+  .header-fields { flex-grow: 1; }
+
+  .charname input {
+    height: 50px;
+    font-size: 1.3em;
+    border: none;
+    border-bottom: 2px solid $color-accent;
+    background: $color-shadow-inset;
+    color: $color-text-primary;
+  }
+
+  .char-details {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
