@@ -1,36 +1,50 @@
 <form class="{{cssClass}}" autocomplete="off">
 
   <header class="sheet-header">
-    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Nome do Item"/></h1>
+      <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Nome do Item" /></h1>
     </div>
   </header>
 
-  <div class="sheet-body">
+  <section class="sheet-body">
 
-    {{!-- Mostra campos específicos para o tipo 'arma' --}}
     {{#if (eq item.type "arma")}}
     <div class="form-group">
       <label>Dado de Dano</label>
-      <input type="text" name="system.damage" value="{{system.damage}}"/>
+      <input type="text" name="system.damage" value="{{system.damage}}" />
     </div>
     {{/if}}
 
-    {{!-- Mostra campos específicos para o tipo 'armadura' --}}
     {{#if (eq item.type "armadura")}}
     <div class="form-group">
       <label>Bónus de Armadura</label>
-      <input type="text" name="system.armorBonus" value="{{system.armorBonus}}" data-dtype="Number"/>
+      <input type="text" name="system.armorBonus" value="{{system.armorBonus}}" data-dtype="Number" />
     </div>
     {{/if}}
 
-    {{!-- Campo de descrição, comum a todos os itens --}}
+    {{#if (eq item.type "manifestacao")}}
     <div class="form-group">
+      <label>Custo de Sanidade</label>
+      <input type="text" name="system.custo" value="{{system.custo}}" data-dtype="Number" />
+    </div>
+    <div class="form-group">
+      <label>Dificuldade</label>
+      <input type="text" name="system.dificuldade" value="{{system.dificuldade}}" data-dtype="Number" />
+    </div>
+    <div class="form-group">
+      <label>Atributo de Rolagem</label>
+      <select name="system.atributo">
+        {{selectOptions rollableAttributes selected=system.atributo}}
+      </select>
+    </div>
+    {{/if}}
+
+    <div class="form-group description">
       <label>Descrição</label>
-      {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+      {{editor enriched.description target="system.description" button=true owner=owner editable=editable}}
     </div>
 
-  </div>
+  </section>
 
 </form>

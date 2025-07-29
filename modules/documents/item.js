@@ -1,7 +1,13 @@
-// modules/documents/item.js
+/**
+ * Define a classe base para os Itens do sistema InE.
+ */
 export class InEItem extends Item {
+  /**
+   * Diz explicitamente ao Foundry quais são os tipos de item permitidos.
+   * @override
+   */
   static get validTypes() {
-    // Adicionamos os nossos novos tipos à lista de permissões.
-    return ["habilidade", "item", "arma", "armadura"];
+    // Confirme que 'manifestacao' está nesta lista.
+    return ["habilidade", "item", "arma", "armadura", "manifestacao"];
   }
 }

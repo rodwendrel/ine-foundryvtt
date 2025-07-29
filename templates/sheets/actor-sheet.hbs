@@ -4,9 +4,10 @@
 
   <section class="sheet-body">
     <nav class="sheet-tabs tabs sidebar" data-group="primary">
-      <a class="item" data-tab="main">Principal</a>
-      <a class="item" data-tab="description">Descrição</a>
-      <a class="item" data-tab="equipment">Equipamento</a>
+      <a class="item" data-tab="main"><i class="fa-solid fa-sheet-plastic"></i></a>
+      <a class="item" data-tab="description"><i class="fa-solid fa-scroll"></i></a>
+      <a class="item" data-tab="equipment"><i class="fa-solid fa-box"></i></a>
+      <a class="item" data-tab="manifestacao"><i class="fa-solid fa-box"></i></a>
 
     </nav>
 
@@ -16,6 +17,9 @@
       {{> "systems/ine/templates/partials/_actor-description-tab.hbs"}}
 
       {{> "systems/ine/templates/partials/_actor-equipment-tab.hbs"}}
+
+      {{> "systems/ine/templates/partials/_actor-manifestacao-tab.hbs"}}
+
     </div>
   </section>
 </form>

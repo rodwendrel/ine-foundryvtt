@@ -1,8 +1,5 @@
-// modules/sheets/item-sheet.js
+// modules/sheets/item-sheet.js (Com Depuração)
 
-/**
- * Define a classe base para as Fichas de Item do sistema InE.
- */
 export class InEItemSheet extends ItemSheet {
 
   static get defaultOptions() {
@@ -10,15 +7,27 @@ export class InEItemSheet extends ItemSheet {
       classes: ["ine", "sheet", "item"],
       width: 520,
       height: 480,
-      // Aponta para o nosso novo arquivo de template
       template: "systems/ine/templates/sheets/item-sheet.hbs"
     });
   }
 
   async getData(options) {
     const context = await super.getData(options);
-    // Passa os dados do sistema para o template para um acesso mais fácil
-    context.system = this.item.system;
+    context.system = foundry.utils.deepClone(this.item.system);
+
+    // Prepara as opções para o nosso menu de seleção
+    if (this.item.type === "manifestacao") {
+      context.rollableAttributes = {
+        "per": "Personalidade",
+        "int": "Inteligência",
+        "sab": "Sabedoria"
+      };
+    }
+
+    context.enrichedDescription = await TextEditor.enrichHTML(context.system.description, {
+      async: true, secrets: this.item.isOwner, relativeTo: this.item
+    });
+
     return context;
   }
 }

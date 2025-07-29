@@ -41,9 +41,9 @@
         <span class="stat-value">{{system.sintonia.value}}</span>
       </div>
     </div>
-    
+
     <div class="quick-attacks-list">
-      <h3>Acesso Rápido</h3>
+      <h3>Acesso</h3>
       {{#each equippedWeapons as |item id|}}
       <div class="item item-row" data-item-id="{{item._id}}">
         <div class="item-name">
@@ -55,6 +55,21 @@
       {{/each}}
       {{#if (eq equippedWeapons.length 0)}}
       <div class="item-row-empty">Nenhuma arma equipada</div>
+      {{/if}}
+    </div>
+    <div class="quick-manifestations-list">
+      <h3>Manifestações</h3>
+      {{#each equippedManifestations as |item id|}}
+      <div class="item item-row" data-item-id="{{item._id}}">
+        <div class="item-name">
+          <img src="{{item.img}}" width="24" height="24" />
+          {{item.name}} (Custo: {{item.system.custo}})
+        </div>
+        <a class="item-control item-roll-manifestation" title="Manifestar"><i class="ra ra-circle-sparks"></i> Usar</a>
+      </div>
+      {{/each}}
+      {{#if (eq equippedManifestations.length 0)}}
+      <div class="item-row-empty">Nenhuma manifestação equipada</div>
       {{/if}}
     </div>
   </div>

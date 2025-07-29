@@ -12,16 +12,12 @@ export class InEActorSheet extends ActorSheet {
   async getData(options) {
     const context = await super.getData(options);
     context.system = this.actor.system;
-
-    // Seus filtros existentes
     context.habilidades = this.actor.items.filter(item => item.type === "habilidade");
     context.equipment = this.actor.items.filter(item => item.type === 'arma' || item.type === 'armadura');
+    context.manifestations = this.actor.items.filter(item => item.type === 'manifestacao');
     context.inventory = this.actor.items.filter(item => item.type === 'item');
-    
-    // ADICIONE ESTA LINHA:
-    // Cria uma nova lista apenas com itens do tipo 'arma' E que estejam 'equipped'.
     context.equippedWeapons = this.actor.items.filter(i => i.type === 'arma' && i.system.equipped);
-
+    context.equippedManifestations = this.actor.items.filter(i => i.type === 'manifestacao' && i.system.equipped);
     return context;
   }
 
@@ -60,17 +56,37 @@ export class InEActorSheet extends ActorSheet {
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
+  /**
+   * Lida com a rolagem de um atributo.
+   * VERSÃO COMPLETA E CORRIGIDA
+   */
   async _onRoll(event) {
-    // ... (código existente para preparar a rolagem)
-    const roll = new Roll(`3d6 + ${attribute.mod}`);
-    await roll.evaluate();
-    const templateData = {
-      flavor: `Teste de ${attribute.label}`,
-      rolls: [roll]
-    };
-    // CORRIGIDO: Usando o caminho completo para renderTemplate
-    const content = await foundry.applications.handlebars.renderTemplate("systems/ine/templates/chat/attribute-roll.hbs", templateData);
-    ChatMessage.create({ /* ... */ });
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+
+    if (dataset.rollType === "attribute") {
+      const attributeKey = dataset.rollKey;
+      // A linha que faltava está aqui:
+      const attribute = this.actor.system.attributes[attributeKey];
+
+      const roll = new Roll(`3d6 + ${attribute.mod}`);
+      await roll.evaluate();
+
+      const templateData = {
+        flavor: `Teste de ${attribute.label}`,
+        rolls: [roll]
+      };
+
+      // A correção do renderTemplate está aqui:
+      const content = await foundry.applications.handlebars.renderTemplate("systems/ine/templates/chat/attribute-roll.hbs", templateData);
+
+      ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        content: content,
+        rolls: [roll]
+      });
+    }
   }
 
   async _onItemRoll(item) {
@@ -83,7 +99,6 @@ export class InEActorSheet extends ActorSheet {
       flavor: `Ataque com ${item.name}`,
       rolls: [attackRoll, damageRoll]
     };
-    // CORRIGIDO: Usando o caminho completo para renderTemplate
     const content = await foundry.applications.handlebars.renderTemplate("systems/ine/templates/chat/attack-roll.hbs", templateData);
     ChatMessage.create({
       user: game.user._id,
@@ -93,37 +108,44 @@ export class InEActorSheet extends ActorSheet {
     });
   }
 
-  /**
-   * Lida com a rolagem de um item (ex: ataque de uma arma).
-   * VERSÃO FINAL que usa o template customizado E a chamada correta ao evaluate().
-   * @param {Item} item O item a ser rolado.
-   */
-  async _onItemRoll(item) {
-    if (item.type !== "arma") return;
+  async _onItemManifest(item) {
+    // 1. Verifica se o personagem tem a habilidade "Ressonância"
+    const hasRessonancia = this.actor.items.some(i => i.type === "habilidade" && i.name.toLowerCase() === "ressonância");
+    if (!hasRessonancia) {
+      ui.notifications.warn("Você não possui a habilidade 'Ressonância' para usar esta manifestação.");
+      return;
+    }
 
-    // 1. Cria as rolagens individuais com os seus rótulos
-    const attackRoll = new Roll(`3d6 + @attributes.for.mod`, this.actor.getRollData(), { label: "Ataque" });
-    const damageRoll = new Roll(item.system.damage, this.actor.getRollData(), { label: "Dano" });
+    // 2. Paga o custo em Sanidade
+    const custo = item.system.custo;
+    const sanidadeAtual = this.actor.system.san.value;
+    if (sanidadeAtual < custo) {
+      ui.notifications.warn("Sanidade insuficiente para usar esta manifestação.");
+      return;
+    }
+    await this.actor.update({ "system.san.value": sanidadeAtual - custo });
 
-    // 2. Avalia ambas as rolagens (da forma correta, sem {async: true})
-    await attackRoll.evaluate();
-    await damageRoll.evaluate();
+    // 3. Prepara e executa a rolagem
+    const atributo = item.system.atributo; // 'per', 'int', ou 'sab'
+    const roll = new Roll(`3d6 + @attributes.${atributo}.mod`, this.actor.getRollData());
+    await roll.evaluate();
 
-    // 3. Prepara os dados para o nosso template customizado
-    const templateData = {
-      flavor: `Ataque com ${item.name}`,
-      rolls: [attackRoll, damageRoll]
-    };
+    // 4. Compara com a dificuldade e prepara a mensagem
+    const dificuldade = item.system.dificuldade;
+    const sucesso = roll.total >= dificuldade;
+    const resultadoTexto = sucesso ? `<span style="color: green;">SUCESSO</span>` : `<span style="color: red;">FALHA</span>`;
 
-    // 4. Renderiza o nosso template para uma string de HTML
-    const content = await renderTemplate("systems/ine/templates/chat/attack-roll.hbs", templateData);
+    const content = `
+      <h2>${item.name}</h2>
+      <p><b>Rolagem de Ressonância:</b> ${roll.total} (Dificuldade: ${dificuldade})</p>
+      <h3>Resultado: ${resultadoTexto}</h3>
+    `;
 
-    // 5. Cria a mensagem, passando o nosso HTML customizado E o array de rolagens (para o som)
+    // 5. Envia para o chat
     ChatMessage.create({
-      user: game.user._id,
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
       content: content,
-      rolls: [attackRoll, damageRoll]
+      rolls: [roll]
     });
   }
 }
