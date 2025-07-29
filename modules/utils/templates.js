@@ -11,9 +11,11 @@ export const preloadHandlebarsTemplates = async function() {
     "systems/ine/templates/partials/_actor-main-tab.hbs",
     "systems/ine/templates/partials/_actor-description-tab.hbs",
     "systems/ine/templates/partials/_actor-equipment-tab.hbs",
-    "systems/ine/templates/partials/_actor-manifestacao-tab.hbs",
+    "systems/ine/templates/partials/_actor-manifestation-tab.hbs",
     "systems/ine/templates/chat/attack-roll.hbs",
     "systems/ine/templates/chat/attribute-roll.hbs",
+    "systems/ine/templates/chat/manifestation-roll.hbs"
+
   ];
 
   return loadTemplates(templatePaths);
