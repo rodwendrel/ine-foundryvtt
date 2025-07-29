@@ -1,44 +1,48 @@
 <div class="tab main active" data-group="primary" data-tab="main">
 
-  <div class="attributes-list">
-    {{#each system.attributes as |attribute key|}}
-    <div class="attribute-row">
-      <label class="attribute-label rollable" data-roll-type="attribute"
-        data-roll-key="{{key}}">{{attribute.label}}</label>
-      <input type="text" name="system.attributes.{{key}}.value" value="{{attribute.value}}" data-dtype="Number" />
-      <span class="attribute-mod">{{numberFormat attribute.mod decimals=0 sign=true}}</span>
+  <div class="attributes-column">
+    <div class="attributes-list">
+      {{#each system.attributes as |attribute key|}}
+      <div class="attribute-row">
+        <label class="attribute-label rollable" data-roll-type="attribute"
+          data-roll-key="{{key}}">{{attribute.label}}</label>
+        <input type="text" name="system.attributes.{{key}}.value" value="{{attribute.value}}" data-dtype="Number" />
+        <span class="attribute-mod">{{numberFormat attribute.mod decimals=0 sign=true}}</span>
+      </div>
+      {{/each}}
     </div>
-    {{/each}}
   </div>
 
-  <div class="stats-list">
-    <div class="stat-resources">
-      <div class="stat-row vertical-stat">
-        <label>Pontos de Vida</label>
-        <div class="value-group">
-          <input type="text" name="system.pv.value" value="{{system.pv.value}}" data-dtype="Number" />
-          <span>/</span>
-          <input type="text" name="system.pv.max" value="{{system.pv.max}}" data-dtype="Number" />
+  <div class="main-column">
+    <div class="stats-list">
+      <div class="stat-resources">
+        <div class="stat-row vertical-stat">
+          <label>Vida</label>
+          <div class="value-group">
+            <input type="text" name="system.pv.value" value="{{system.pv.value}}" data-dtype="Number" />
+            <span>/</span>
+            <input type="text" name="system.pv.max" value="{{system.pv.max}}" data-dtype="Number" />
+          </div>
+        </div>
+        <div class="stat-row vertical-stat">
+          <label>Sanidade</label>
+          <div class="value-group">
+            <input type="text" name="system.san.value" value="{{system.san.value}}" data-dtype="Number" />
+            <span>/</span>
+            <span class="stat-value">{{system.san.totalMax}}</span>
+          </div>
         </div>
       </div>
-      <div class="stat-row vertical-stat">
-        <label>Pontos de Sanidade</label>
-        <div class="value-group">
-          <input type="text" name="system.san.value" value="{{system.san.value}}" data-dtype="Number" />
-          <span>/</span>
-          <span class="stat-value">{{system.san.totalMax}}</span>
-        </div>
-      </div>
-    </div>
 
-    <div class="stat-resources">
-      <div class="stat-row vertical-stat">
-        <label>Defesa</label>
-        <span class="stat-value">{{system.defesa.total}}</span>
-      </div>
-      <div class="stat-row vertical-stat">
-        <label>Sintonia</label>
-        <span class="stat-value">{{system.sintonia.value}}</span>
+      <div class="stat-resources">
+        <div class="stat-row vertical-stat">
+          <label>Defesa</label>
+          <span class="stat-value">{{system.defesa.total}}</span>
+        </div>
+        <div class="stat-row vertical-stat">
+          <label>Sintonia</label>
+          <span class="stat-value">{{system.sintonia.value}}</span>
+        </div>
       </div>
     </div>
 
@@ -50,22 +54,24 @@
           <img src="{{item.img}}" width="24" height="24" />
           {{item.name}} ({{item.system.damage}})
         </div>
-        <a class="item-control item-roll-attack" title="Rolar Ataque"><i class="ra ra-sword"></i> Atacar</a>
+        <a class="item-control quick item-roll-attack" title="Rolar Ataque"><i class="ra ra-sword"></i> Atacar</a>
       </div>
       {{/each}}
       {{#if (eq equippedWeapons.length 0)}}
       <div class="item-row-empty">Nenhuma arma equipada</div>
       {{/if}}
     </div>
+
     <div class="quick-manifestations-list">
       <h3>Manifestações</h3>
       {{#each equippedManifestations as |item id|}}
       <div class="item item-row" data-item-id="{{item._id}}">
         <div class="item-name">
           <img src="{{item.img}}" width="24" height="24" />
-          {{item.name}} (Custo: {{item.system.custo}})
+          {{item.name}} (san: {{item.system.custo}})
         </div>
-        <a class="item-control item-roll-manifestation" title="Manifestar"><i class="ra ra-circle-sparks"></i> Usar</a>
+        <a class="item-control quick item-roll-manifestation" title="Manifestar"> <i
+            class="fa-solid fa-brain"></i>Conjurar</a>
       </div>
       {{/each}}
       {{#if (eq equippedManifestations.length 0)}}
@@ -73,5 +79,28 @@
       {{/if}}
     </div>
   </div>
+  <div class="habilidades-list">
+    <h3>Habilidades</h3>
+    <ol class="items-list">
+      <li class="item flexrow item-header">
+        <div class="item-name">Nome</div>
+        <div class="item-controls">
+          <a class="item-control item-create" title="Criar Habilidade" data-type="habilidade"><i
+              class="fas fa-plus"></i> Adicionar</a>
+        </div>
+      </li>
 
+      {{#each habilidades as |item id|}}
+      <li class="item flexrow" data-item-id="{{item._id}}">
+        <div class="item-name">
+          <h4>{{item.name}}</h4>
+        </div>
+        <div class="item-controls">
+          <a class="item-control item-edit" title="Editar Habilidade"><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title="Apagar Habilidade"><i class="fas fa-trash"></i></a>
+        </div>
+      </li>
+      {{/each}}
+    </ol>
+  </div>
 </div>

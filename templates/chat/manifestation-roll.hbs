@@ -1,0 +1,19 @@
+<div class="ine chat-card">
+  <header class="card-header">
+    <h3>{{item.name}}</h3>
+  </header>
+
+  <div class="card-content">
+    <div class="roll-group">
+      <div class="roll-label">Rolagem de Ressonância ({{item.system.atributo}})</div>
+      <div class="roll-total">{{roll.total}}</div>
+      <div class="roll-formula">{{roll.formula}}</div>
+    </div>
+
+    <div class="difficulty-text">Dificuldade: {{dificuldade}}</div>
+
+    <div class="result-text {{#if sucesso}}sucesso{{else}}falha{{/if}}">
+      {{#if sucesso}}SUCESSO{{else}}FALHA{{/if}}
+    </div>
+  </div>
+</div>

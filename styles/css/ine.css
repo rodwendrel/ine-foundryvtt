@@ -7,36 +7,53 @@
   background-position: center;
 }
 
-.ine.sheet.actor {
+body.game .app img {
+  border: none;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  border: none;
+}
+
+.ine .window-content {
+  color: #e0e0e0;
+  font-family: "Marcellus SC", serif;
+  background-image: linear-gradient(to bottom, rgba(7, 7, 7, 0.789), rgba(7, 7, 7, 0.971) 65%), url("../../assets/ui/background.png");
+  background-color: #212121;
+  background-size: cover;
+  background-position: center;
+}
+
+.ine.sheet {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.ine.sheet.actor .sheet-body {
+.ine.sheet .sheet-header {
+  padding: 10px;
+  border-bottom: 2px solid #2d2d2d;
+}
+.ine.sheet .sheet-body {
   flex-grow: 1;
   padding: 10px;
-  display: grid;
-  grid-template-areas: "content sidebar";
-  grid-template-columns: 1fr auto;
-  gap: 15px;
 }
-.ine.sheet.actor .sheet-body .main-content {
-  grid-area: content;
+
+.ine.sheet.item select, .ine.sheet.item input[type=text], .ine.sheet.actor textarea, .ine.sheet.actor input[type=text], .ine.sheet.actor .stat-row .stat-value {
+  background: rgba(0, 0, 0, 0.4);
+  color: #e0e0e0;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #a52a2a;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+  height: 28px;
+  font-size: 1.1em;
 }
-.ine.sheet.actor .sheet-body .sidebar {
-  grid-area: sidebar;
-  border: none;
-}
-.ine.sheet.actor .sheet-body .tab-content > .tab {
-  display: none;
-}
-.ine.sheet.actor .sheet-body .tab-content > .tab.active {
-  display: block;
-}
-.ine.sheet.actor .sheet-body .tab.main.active {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+
+.ine .rollable:hover {
+  color: #ff6347;
+  cursor: pointer;
+  text-shadow: 0 0 5px #ff6347;
 }
 
 .ine .sheet-header {
@@ -48,7 +65,6 @@
 .ine .sheet-header .profile-img {
   height: 120px;
   width: 120px;
-  border: 2px solid #a52a2a;
   flex-shrink: 0;
 }
 .ine .sheet-header .header-fields {
@@ -59,7 +75,7 @@
   font-size: 1.3em;
   border: none;
   border-bottom: 2px solid #a52a2a;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
   color: #e0e0e0;
 }
 .ine .sheet-header .char-details {
@@ -77,7 +93,7 @@
   left: 100%;
 }
 .ine .tabs.sidebar .item {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 3px;
   padding: 10px 5px;
   font-weight: bold;
@@ -99,149 +115,35 @@
   transform: rotate(180deg) translateX(-5px); /* Add right displacement */
 }
 
-.ine.sheet.item select, .ine textarea, .ine input[type=text], .ine .stat-row .stat-value {
-  background: rgba(0, 0, 0, 0.7);
+.chat-message {
+  background-image: linear-gradient(to bottom, rgba(7, 7, 7, 0.621), rgb(7, 7, 7) 75%), url("../../assets/ui/background.png");
+  background-color: #212121;
+  background-size: cover;
+  background-position: center;
   color: #e0e0e0;
-  border: 1px solid transparent;
-  border-bottom: 1px solid #a52a2a;
-  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.7);
-  border-radius: 3px;
-  height: 28px;
-  font-size: 1.1em;
+  border: 1px solid #212121;
+  border-radius: 5px;
+  padding: 10px;
 }
-
-.ine .attributes-list,
-.ine .stats-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.ine .attributes-list .stat-resources,
-.ine .stats-list .stat-resources {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-.ine .attribute-row,
-.ine .stat-row {
-  display: grid;
-  grid-template-columns: 1fr 60px 40px;
-  align-items: center;
-  gap: 10px;
-  padding: 5px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 3px;
-}
-.ine .attribute-row .attribute-label,
-.ine .stat-row .attribute-label {
-  text-transform: uppercase;
-}
-.ine .attribute-row.vertical-stat,
-.ine .stat-row.vertical-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.ine .attribute-row.vertical-stat .value-group,
-.ine .stat-row.vertical-stat .value-group {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  width: 100%;
-  gap: 5px;
-}
-.ine .stat-row {
-  grid-template-columns: 1fr;
-}
-.ine .stat-row .stat-value {
-  padding: 0 10px;
-  line-height: 28px;
-  text-align: center;
-}
-.ine input[type=text] {
-  text-align: center;
-  padding: 0.5em;
-}
-.ine .attribute-mod {
-  font-size: 1.2em;
-  font-weight: bold;
-  text-align: center;
-}
-.ine .rollable:hover {
-  color: #ff6347;
-  cursor: pointer;
-  text-shadow: 0 0 5px #ff6347;
-}
-.ine textarea {
-  width: 100%;
-  height: 150px;
-  resize: vertical;
-}
-.ine .quick-attacks-list {
-  margin-top: 15px;
-}
-.ine .quick-attacks-list h3 {
-  text-align: center;
-  border-bottom: 1px solid #a52a2a;
-  padding-bottom: 5px;
+.chat-message h4 {
+  font-family: "Marcellus SC", serif;
+  font-size: 1em;
+  color: rgba(255, 255, 255, 0.466);
   margin-bottom: 5px;
-}
-.ine .quick-attacks-list .item-row,
-.ine .quick-attacks-list .item-row-empty {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px;
-  background: #2d2d2d;
-  border-radius: 3px;
-  margin-top: 5px;
-}
-.ine .quick-attacks-list .item-row-empty {
-  justify-content: center;
-  font-style: italic;
-  color: rgb(249.5, 249.5, 249.5);
-}
-.ine .quick-attacks-list .item-name {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.ine .item-controls .item-toggle-equipped.active i {
-  color: #ff6347;
-}
-
-.ine.sheet.item .form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-.ine.sheet.item .form-group label {
-  font-weight: bold;
-  margin-bottom: 3px;
-}
-.ine.sheet.item select {
-  height: 32px;
-  padding: 0 5px;
-}
-.ine.sheet.item .form-group.description {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-.ine.sheet.item .form-group.description .editor {
-  flex-grow: 1;
 }
 
 .chat-card.ine {
-  background: #2d2d2d;
+  background: rgba(7, 7, 7, 0.466);
   border: 1px solid #212121;
-  border-left: 3px solid #a52a2a;
   border-radius: 5px;
+  padding: 10px;
 }
 .chat-card.ine .card-header h3 {
+  text-align: center;
+  text-transform: capitalize;
   font-family: "Marcellus SC", serif;
-  font-size: 1.2em;
-  border-bottom: 1px solid #a52a2a;
+  font-size: 1.5em;
+  color: #e0e0e0;
 }
 .chat-card.ine .card-content {
   display: flex;
@@ -255,6 +157,7 @@
 }
 .chat-card.ine .roll-label {
   font-weight: bold;
+  padding-bottom: 10px;
 }
 .chat-card.ine .roll-formula {
   font-size: 0.9em;
@@ -262,11 +165,173 @@
   justify-self: end;
 }
 .chat-card.ine .roll-total {
+  background: rgba(7, 7, 7, 0.611);
   grid-column: span 2;
-  background: #212121;
   text-align: center;
   font-size: 1.5em;
   padding: 5px;
-  border: 1px solid #a52a2a;
+  border-bottom: 2px solid #a52a2a;
   border-radius: 3px;
+}
+.chat-card.ine .difficulty-text {
+  text-align: center;
+  font-style: italic;
+  opacity: 0.8;
+  margin-top: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 5px;
+}
+.chat-card.ine .result-text {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: 5px;
+  padding: 3px;
+  border-radius: 3px;
+}
+.chat-card.ine .result-text.sucesso {
+  color: #2ecc71;
+}
+.chat-card.ine .result-text.falha {
+  color: #e74c3c;
+}
+
+.ine.sheet.actor .attributes-list,
+.ine.sheet.actor .stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ine.sheet.actor .stat-resources {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.ine.sheet.actor .attribute-row,
+.ine.sheet.actor .stat-row {
+  display: grid;
+  grid-template-columns: 1fr 60px 40px;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+}
+.ine.sheet.actor .attribute-row .attribute-label,
+.ine.sheet.actor .stat-row .attribute-label {
+  text-transform: uppercase;
+}
+.ine.sheet.actor .attribute-row.vertical-stat,
+.ine.sheet.actor .stat-row.vertical-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ine.sheet.actor .attribute-row.vertical-stat .value-group,
+.ine.sheet.actor .stat-row.vertical-stat .value-group {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+  padding: 10px;
+}
+.ine.sheet.actor .stat-row {
+  grid-template-columns: 1fr;
+}
+.ine.sheet.actor .stat-row .stat-value {
+  padding: 0 10px;
+  line-height: 28px;
+  text-align: center;
+}
+.ine.sheet.actor input[type=text] {
+  text-align: center;
+  padding: 1em;
+}
+.ine.sheet.actor .attribute-mod {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+.ine.sheet.actor textarea {
+  width: 100%;
+  height: 150px;
+  resize: vertical;
+}
+.ine.sheet.actor .quick-attacks-list,
+.ine.sheet.actor .quick-manifestations-list {
+  margin-top: 15px;
+}
+.ine.sheet.actor .quick-attacks-list h3,
+.ine.sheet.actor .quick-manifestations-list h3 {
+  text-align: left;
+  border-bottom: 1px solid #a52a2a;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+.ine.sheet.actor .quick-attacks-list .item-row,
+.ine.sheet.actor .quick-attacks-list .item-row-empty,
+.ine.sheet.actor .quick-manifestations-list .item-row,
+.ine.sheet.actor .quick-manifestations-list .item-row-empty {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+  margin-top: 5px;
+}
+.ine.sheet.actor .quick-attacks-list .item-row-empty,
+.ine.sheet.actor .quick-manifestations-list .item-row-empty {
+  justify-content: center;
+  font-style: italic;
+  color: rgb(249.5, 249.5, 249.5);
+}
+.ine.sheet.actor .quick-attacks-list .item-name,
+.ine.sheet.actor .quick-manifestations-list .item-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ine.sheet.actor .item-controls .item-toggle-equipped.active i {
+  color: #ff6347;
+}
+.ine.sheet.actor .item-control .quick {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.ine.sheet.actor .tab.main.active {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+}
+.ine.sheet.actor .main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ine.sheet.item .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.ine.sheet.item .form-group label {
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+.ine.sheet.item select, .ine.sheet.item input[type=text] {
+  height: 32px;
+  padding: 0 5px;
+  text-align: left;
+}
+.ine.sheet.item .form-group.description {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.ine.sheet.item .form-group.description .editor {
+  flex-grow: 1;
 }/*# sourceMappingURL=ine.css.map */

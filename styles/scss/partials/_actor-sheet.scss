@@ -1,0 +1,143 @@
+// ===== Actor Sheet Specific Styles =====
+
+.ine.sheet.actor {
+  // --- Listas e Linhas ---
+
+
+  .attributes-list,
+  .stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stat-resources {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .attribute-row,
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 60px 40px;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    background: $color-shadow-inset;
+    border-radius: 3px;
+
+    .attribute-label {
+      text-transform: uppercase;
+    }
+
+    &.vertical-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      .value-group {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        width: 100%;
+        gap: 5px;
+        padding: 10px;
+      }
+    }
+  }
+
+  .stat-row {
+    grid-template-columns: 1fr;
+
+    .stat-value {
+      @extend %input-base;
+      padding: 0 10px;
+      line-height: 28px;
+      text-align: center;
+    }
+  }
+
+  // --- Componentes Específicos ---
+  input[type="text"] {
+    @extend %input-base;
+    text-align: center;
+    padding: 1em;
+  }
+
+  .attribute-mod {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  textarea {
+    @extend %input-base;
+    width: 100%;
+    height: 150px;
+    resize: vertical;
+  }
+
+  .quick-attacks-list,
+  .quick-manifestations-list {
+    margin-top: 15px;
+
+    h3 {
+      text-align: left;
+      border-bottom: 1px solid $color-accent;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+    }
+
+    .item-row,
+    .item-row-empty {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      background-color: $color-shadow-inset;
+      border-radius: 3px;
+      margin-top: 5px;
+    }
+
+    .item-row-empty {
+      justify-content: center;
+      font-style: italic;
+      color: lighten($color-text-primary, 10%);
+    }
+
+    .item-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  .item-controls .item-toggle-equipped.active i {
+    color: $color-accent-hover;
+  }
+
+  .item-control .quick {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .tab.main.active {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+  }
+
+  // Estilos para as novas colunas
+  .attributes-column {
+    // Adicione aqui estilos específicos para a coluna de atributos, se desejar
+  }
+
+  .main-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}

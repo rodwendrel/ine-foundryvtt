@@ -1,8 +1,6 @@
 <div class="tab manifestacao" data-group="primary" data-tab="manifestacao">
   <h3 class="item-section-header">Manifestações</h3>
   <ol class="items-list">
-    {{log manifestations}}
-
     {{#each manifestations as |item id|}}
 
     <li class="item flexrow" data-item-id="{{item._id}}">
@@ -11,11 +9,12 @@
         <h4>{{item.name}}</h4>
       </div>
       {{#if (eq item.type "manifestacao")}}
-      <a class="item-control item-roll-attack" title="Rolar Ataque"><i class="ra ra-sword"></i> Atacar</a>
+      <a class="item-control item-roll-manifestation" title="Conjurar">
+        <i class="fa-solid fa-brain"></i>Conjurar</a>
       {{/if}}
       <div class="item-controls">
         <a class="item-control item-toggle-equipped {{#if item.system.equipped}}active{{/if}}"
-          title="Equipar/Desequipar"><i class="fas fa-shield-alt"></i></a>
+          title="Equipar/Desequipar"><i class="fa-solid fa-star"></i></a>
         <a class="item-control item-edit" title="Editar Item"><i class="fas fa-edit"></i></a>
         <a class="item-control item-delete" title="Apagar Item"><i class="fas fa-trash"></i></a>
       </div>

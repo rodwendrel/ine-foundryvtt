@@ -1,5 +1,6 @@
 // ===== Reusable Components =====
 
+// Estilo base para todos os inputs, reutilizável em qualquer ficha.
 %input-base {
   background: $color-shadow-inset;
   color: $color-text-primary;
@@ -11,154 +12,9 @@
   font-size: 1.1em;
 }
 
-// --- ESTILOS PARA A FICHA DE PERSONAGEM ---
-.ine {
-
-  .attributes-list,
-  .stats-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    .stat-resources {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-  }
-
-  .attribute-row,
-  .stat-row {
-    display: grid;
-    grid-template-columns: 1fr 60px 40px;
-    align-items: center;
-    gap: 10px;
-    padding: 5px;
-    background: $color-shadow-inset;
-    border-radius: 3px;
-
-    .attribute-label {
-      text-transform: uppercase;
-    }
-
-    &.vertical-stat {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-
-      .value-group {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-        align-items: center;
-        width: 100%;
-        gap: 5px;
-      }
-    }
-  }
-
-  .stat-row {
-    grid-template-columns: 1fr; 
-    .stat-value {
-      @extend %input-base;
-      padding: 0 10px;
-      line-height: 28px;
-      text-align: center;
-    }
-  }
-
-  input[type="text"] {
-    @extend %input-base;
-    text-align: center;
-    padding: 0.5em;
-  }
-
-  .attribute-mod {
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  .rollable:hover {
-    color: $color-accent-hover;
-    cursor: pointer;
-    text-shadow: 0 0 5px $color-accent-hover;
-  }
-
-  textarea {
-    @extend %input-base;
-    width: 100%;
-    height: 150px;
-    resize: vertical;
-  }
-
-  .quick-attacks-list {
-    margin-top: 15px;
-    h3 {
-      text-align: center;
-      border-bottom: 1px solid $color-accent;
-      padding-bottom: 5px;
-      margin-bottom: 5px;
-    }
-    .item-row,
-    .item-row-empty {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px;
-      background: $color-background-secondary;
-      border-radius: 3px;
-      margin-top: 5px;
-    }
-    .item-row-empty {
-      justify-content: center;
-      font-style: italic;
-      color: lighten($color-text-primary, 10%);
-    }
-    .item-name {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-  }
-
-  .item-controls {
-    .item-toggle-equipped {
-      &.active {
-        i {
-          color: $color-accent-hover;
-        }
-      }
-    }
-  }
-} // --- FIM DO BLOCO .ine ---
-
-// --- ESTILOS PARA A FICHA DE ITEM ---
-// CORREÇÃO: Este bloco foi movido para fora do bloco '.ine'
-.ine.sheet.item {
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-
-    label {
-      font-weight: bold;
-      margin-bottom: 3px;
-    }
-  }
-
-  select {
-    @extend %input-base;
-    height: 32px;
-    padding: 0 5px;
-  }
-
-  .form-group.description {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-
-    .editor {
-      flex-grow: 1;
-    }
-  }
+// Estilo para elementos que podem ser rolados.
+.ine .rollable:hover {
+  color: $color-accent-hover;
+  cursor: pointer;
+  text-shadow: 0 0 5px $color-accent-hover;
 }

@@ -4,11 +4,10 @@
 
   <section class="sheet-body">
     <nav class="sheet-tabs tabs sidebar" data-group="primary">
-      <a class="item" data-tab="main"><i class="fa-solid fa-sheet-plastic"></i></a>
-      <a class="item" data-tab="description"><i class="fa-solid fa-scroll"></i></a>
-      <a class="item" data-tab="equipment"><i class="fa-solid fa-box"></i></a>
-      <a class="item" data-tab="manifestacao"><i class="fa-solid fa-box"></i></a>
-
+      <a class="item" data-tab="main" title="Início"><i class="fa-solid fa-sheet-plastic"></i></a>
+      <a class="item" data-tab="equipment" title="Inventário"><i class="fa-solid fa-box"></i></a>
+      <a class="item" data-tab="manifestacao" title="Manifestações"><i class="fa-solid fa-book-open-reader"></i></a>
+      <a class="item" data-tab="description" title="Descrição"><i class="fa-solid fa-scroll"></i></a>
     </nav>
 
     <div class="tab-content main-content">
@@ -18,7 +17,7 @@
 
       {{> "systems/ine/templates/partials/_actor-equipment-tab.hbs"}}
 
-      {{> "systems/ine/templates/partials/_actor-manifestacao-tab.hbs"}}
+      {{> "systems/ine/templates/partials/_actor-manifestation-tab.hbs"}}
 
     </div>
   </section>

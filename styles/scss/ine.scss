@@ -1,9 +1,18 @@
 // ===== Main SCSS File for InE System =====
 
+// 1. Variáveis primeiro.
 @import 'partials/variables';
+
+// 2. Estilos de base e layout globais.
 @import 'partials/base';
 @import 'partials/layout';
+
+// 3. Componentes reutilizáveis.
+@import 'partials/components';
+
+// 4. Estilos específicos para cada parte da interface.
 @import 'partials/header';
 @import 'partials/tabs';
-@import 'partials/components';
 @import 'partials/chat';
+@import 'partials/actor-sheet';
+@import 'partials/item-sheet';

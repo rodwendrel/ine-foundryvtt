@@ -3,9 +3,13 @@
   <ol class="items-list">
     {{#each equipment as |item id|}}
     <li class="item flexrow" data-item-id="{{item._id}}">
-      <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
-      <div class="item-name">
-        <h4>{{item.name}}</h4>
+      <div class="item-column">
+        <div class="item-image">
+          <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+        </div>
+        <div class="item-name">
+          <h4>{{item.name}}</h4>
+        </div>
       </div>
       {{#if (eq item.type "arma")}}
       <a class="item-control item-roll-attack" title="Rolar Ataque"><i class="ra ra-sword"></i> Atacar</a>
@@ -22,13 +26,6 @@
 
   <h3 class="item-section-header">Inventário</h3>
   <ol class="items-list">
-    <li class="item flexrow item-header">
-      <div class="item-name">Itens Gerais</div>
-      <div class="item-controls">
-        <a class="item-control item-create" title="Criar Item" data-type="item"><i class="fas fa-plus"></i>
-          Adicionar</a>
-      </div>
-    </li>
     {{#each inventory as |item id|}}
     <li class="item flexrow" data-item-id="{{item._id}}">
       <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24" /></div>
@@ -41,5 +38,11 @@
       </div>
     </li>
     {{/each}}
+    <li class="item flexrow item-header" style="text-align: end;">
+      <div class="item-controls">
+        <a class="item-control item-create" title="Criar Item" data-type="item"><i class="fas fa-plus"></i>
+          Adicionar</a>
+      </div>
+    </li>
   </ol>
 </div>

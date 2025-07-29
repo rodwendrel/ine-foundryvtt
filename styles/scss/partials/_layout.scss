@@ -1,39 +1,32 @@
-// ===== Main Sheet Layout (Right Sidebar) =====
+// ===== Layouts Globais =====
 
-.ine.sheet.actor {
+// Estilo para todas as janelas do nosso sistema
+.ine .window-content {
+  color: $color-text-primary;
+  font-family: $font-primary;
+
+  background-image:
+    linear-gradient(to bottom, rgba(7, 7, 7, 0.789), rgba(7, 7, 7, 0.971) 65%),
+    url('../../assets/ui/background.png'); 
+  
+  background-color: $color-background-primary;
+  background-size: cover;
+  background-position: center;
+}
+
+// Layout base para todas as fichas (de Ator e de Item)
+.ine.sheet {
   display: flex;
   flex-direction: column;
   gap: 10px;
 
+  .sheet-header {
+    padding: 10px;
+    border-bottom: 2px solid $color-background-secondary;
+  }
+
   .sheet-body {
     flex-grow: 1;
     padding: 10px;
-    display: grid;
-    
-    grid-template-areas: "content sidebar";
-    grid-template-columns: 1fr auto; // Conteúdo à esquerda, barra lateral à direita
-    gap: 15px;
-
-    .main-content {
-      grid-area: content;
-    }
-    .sidebar {
-      grid-area: sidebar;
-      border: none;
-
-    }
-
-    .tab-content {
-      > .tab { display: none; }
-      > .tab.active { display: block; }
-    }
-
-    .tab.main {
-      &.active {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-      }
-    }
   }
 }
