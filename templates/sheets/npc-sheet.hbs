@@ -1,0 +1,41 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Nome do Monstro"/></h1>
+      <div class="stats-grid">
+        <div class="stat-item"><label>Pontos de Vida</label><span><input name="system.pv.value" value="{{system.pv.value}}"/> / <input name="system.pv.max" value="{{system.pv.max}}"/></span></div>
+        <div class="stat-item"><label>Sanidade</label><input name="system.san" value="{{system.san}}"/></div>
+        <div class="stat-item"><label>Defesa</label><span>{{system.defesa.total}}</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="sheet-body">
+    <div class="item-list">
+      <div class="item-list-header"><h3>Ataques & Manifestações</h3><a class="item-control item-create" data-type="arma"><i class="fas fa-plus"></i></a></div>
+      {{#each attacks as |item id|}}
+      <div class="item" data-item-id="{{item._id}}"><img src="{{item.img}}"/><h4>{{item.name}}</h4><div class="item-controls"><a class="item-control item-roll" title="Rolar"><i class="fas fa-dice-d20"></i></a><a class="item-control item-edit" title="Editar"><i class="fas fa-edit"></i></a><a class="item-control item-delete" title="Apagar"><i class="fas fa-trash"></i></a></div></div>
+      {{/each}}
+    </div>
+
+    <div class="item-list">
+      <div class="item-list-header"><h3>Armaduras & Escudos</h3><a class="item-control item-create" data-type="armadura"><i class="fas fa-plus"></i></a></div>
+      {{#each armors as |item id|}}
+      <div class="item" data-item-id="{{item._id}}"><img src="{{item.img}}"/><h4>{{item.name}}</h4><div class="item-controls"><a class="item-control item-edit" title="Editar"><i class="fas fa-edit"></i></a><a class="item-control item-delete" title="Apagar"><i class="fas fa-trash"></i></a></div></div>
+      {{/each}}
+    </div>
+
+    <div class="item-list">
+      <div class="item-list-header"><h3>Habilidades</h3><a class="item-control item-create" data-type="habilidade"><i class="fas fa-plus"></i></a></div>
+      {{#each habilidades as |item id|}}
+      <div class="item" data-item-id="{{item._id}}"><img src="{{item.img}}"/><h4>{{item.name}}</h4><div class="item-controls"><a class="item-control item-edit" title="Editar"><i class="fas fa-edit"></i></a><a class="item-control item-delete" title="Apagar"><i class="fas fa-trash"></i></a></div></div>
+      {{/each}}
+    </div>
+
+    <div class="tactics">
+      <h3>Táticas e Descrições Especiais</h3>
+      {{editor enrichedTaticas target="system.taticas" button=true owner=owner editable=editable}}
+    </div>
+  </section>
+</form>

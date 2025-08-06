@@ -2,13 +2,15 @@ import { InEActor } from "../documents/actor.js";
 import { InEItem } from "../documents/item.js";
 import { InEActorSheet } from "../sheets/actor-sheet.js";
 import { InEItemSheet } from "../sheets/item-sheet.js";
-import { InECharacterData } from "../data/character-data.js";
+import { InENpcSheet } from "../sheets/npc-sheet.js";
+import { InECharacterData } from "../data/actor/character-data.js";
 import { preloadHandlebarsTemplates } from "../utils/templates.js";
 import { HabilidadeData } from "../data/item/habilidade-data.js";
 import { BaseItemData } from "../data/item/base-item-data.js";
 import { ArmaData } from "../data/item/arma-data.js";
 import { ArmaduraData } from "../data/item/armadura-data.js";
 import { ManifestacaoData } from "../data/item/manifestacao-data.js";
+import { NpcData } from "../data/actor/npc-data.js";
 import { registerHooks } from "./hooks.js";
 
 export const initializeSystem = async function() {
@@ -20,6 +22,7 @@ export const initializeSystem = async function() {
 
   // --- CONFIGURAÇÃO DE MODELOS DE DADOS ---
   CONFIG.Actor.dataModels.character = InECharacterData;
+  CONFIG.Actor.dataModels.npc = NpcData;
   CONFIG.Item.dataModels.habilidade = HabilidadeData;
   CONFIG.Item.dataModels.item = BaseItemData;
   CONFIG.Item.dataModels.arma = ArmaData;
@@ -33,6 +36,8 @@ export const initializeSystem = async function() {
     armadura: "Armadura",
     manifestacao: "Manifestação"
   };
+
+  CONFIG.Actor.typeLabels.npc = "NPC";
 
   // --- CONFIGURAÇÃO DAS FICHAS ---
   Actors.unregisterSheet("core", ActorSheet);
@@ -49,6 +54,12 @@ export const initializeSystem = async function() {
     types: ["habilidade", "item", "arma", "armadura", "manifestacao"], // A 'manifestacao' TEM de estar nesta lista.
     makeDefault: true,
     label: "Ficha de Item InE"
+  });
+
+  Actors.registerSheet("ine", InENpcSheet, {
+    types: ["npc"],
+    makeDefault: true,
+    label: "Ficha de NPC InE"
   });
   
   // --- REGISTO DE HOOKS ---

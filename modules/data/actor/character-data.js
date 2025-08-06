@@ -1,7 +1,11 @@
-// modules/data/character-data.js
-export class InECharacterData extends foundry.abstract.DataModel {
+// modules/data/actor/character-data.js
+
+import { BaseActorData } from "./base-actor-data.js"; // <-- 1. IMPORTA O MODELO BASE
+
+export class InECharacterData extends BaseActorData { // <-- 2. ESTENDE O MODELO BASE
   static defineSchema() {
     const fields = foundry.data.fields;
+    // O seu schema continua exatamente o mesmo aqui.
     return {
       attributes: new fields.SchemaField({
         for: new fields.SchemaField({ value: new fields.NumberField({ initial: 10, integer: true, min: 3, max: 18 }), label: new fields.StringField({ initial: "Força" }), mod: new fields.NumberField({ integer: true, initial: 0 }) }),
@@ -22,7 +26,7 @@ export class InECharacterData extends foundry.abstract.DataModel {
       habilidades: new fields.HTMLField(),
       notes: new fields.HTMLField()
     };
-  } // <-- Fim do defineSchema()
+  }
 
   prepareBaseData() {
     for (const attribute of Object.values(this.attributes)) {
@@ -35,17 +39,5 @@ export class InECharacterData extends foundry.abstract.DataModel {
     this.san.totalMax = this.attributes.int.value + this.attributes.sab.value + this.attributes.per.value;
   }
 
-  /**
-   * Calcula os valores que dependem de itens.
-   * @param {Collection<Item>} items - Os itens que o ator possui.
-   */
-  prepareDerivedData(items) {
-    let totalArmorBonus = 0;
-    for (let item of items) {
-      if ((item.type === "armadura") && (item.system.equipped)) {
-        totalArmorBonus += item.system.armorBonus;
-      }
-    }
-    this.defesa.total += totalArmorBonus;
-  }
+  // 3. A FUNÇÃO prepareDerivedData FOI REMOVIDA DAQUI, POIS AGORA É HERDADA.
 }

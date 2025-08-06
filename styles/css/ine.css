@@ -45,7 +45,7 @@ body.game .app img {
   border: 1px solid transparent;
   border-bottom: 1px solid #a52a2a;
   box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.4);
-  border-radius: 3px;
+  border-radius: 0.4rem;
   height: 28px;
   font-size: 1.1em;
 }
@@ -221,14 +221,18 @@ body.game .app img {
 .ine.sheet.actor .stat-row .attribute-label {
   text-transform: uppercase;
 }
-.ine.sheet.actor .attribute-row.vertical-stat,
-.ine.sheet.actor .stat-row.vertical-stat {
+.ine.sheet.actor .attribute-row.vertical-stat, .ine.sheet.actor .ine.sheet.npc .sheet-header .attribute-row.stat-item, .ine.sheet.npc .sheet-header .ine.sheet.actor .attribute-row.stat-item,
+.ine.sheet.actor .stat-row.vertical-stat,
+.ine.sheet.actor .ine.sheet.npc .sheet-header .stat-row.stat-item,
+.ine.sheet.npc .sheet-header .ine.sheet.actor .stat-row.stat-item {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
-.ine.sheet.actor .attribute-row.vertical-stat .value-group,
-.ine.sheet.actor .stat-row.vertical-stat .value-group {
+.ine.sheet.actor .attribute-row.vertical-stat .value-group, .ine.sheet.actor .ine.sheet.npc .sheet-header .attribute-row.stat-item .value-group, .ine.sheet.npc .sheet-header .ine.sheet.actor .attribute-row.stat-item .value-group,
+.ine.sheet.actor .stat-row.vertical-stat .value-group,
+.ine.sheet.actor .ine.sheet.npc .sheet-header .stat-row.stat-item .value-group,
+.ine.sheet.npc .sheet-header .ine.sheet.actor .stat-row.stat-item .value-group {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -334,4 +338,54 @@ body.game .app img {
 }
 .ine.sheet.item .form-group.description .editor {
   flex-grow: 1;
+}
+
+.ine.sheet.npc .sheet-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.ine.sheet.npc .sheet-header .profile-img {
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
+}
+.ine.sheet.npc .sheet-header .header-fields {
+  flex-grow: 1;
+}
+.ine.sheet.npc .sheet-header .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.ine.sheet.npc .sheet-header .stat-item {
+  background: #2d2d2d;
+  padding: 5px;
+  border-radius: 3px;
+}
+.ine.sheet.npc .sheet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.ine.sheet.npc .item-list .item-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+}
+.ine.sheet.npc .item-list .item {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 3px;
+}
+.ine.sheet.npc .item-list .item:not(:last-child) {
+  border-bottom: 1px solid #2d2d2d;
+}
+.ine.sheet.npc .item-list .item-controls {
+  display: flex;
 }/*# sourceMappingURL=ine.css.map */
