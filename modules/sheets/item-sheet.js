@@ -1,5 +1,3 @@
-// modules/sheets/item-sheet.js (Com Depuração)
-
 export class InEItemSheet extends ItemSheet {
 
   static get defaultOptions() {
@@ -13,19 +11,29 @@ export class InEItemSheet extends ItemSheet {
 
   async getData(options) {
     const context = await super.getData(options);
-    context.system = foundry.utils.deepClone(this.item.system);
+    
+    // Passamos uma referência direta para os dados do sistema.
+    context.system = this.item.system;
 
-    // Prepara as opções para o nosso menu de seleção
-    if (this.item.type === "manifestacao") {
-      context.rollableAttributes = {
-        "per": "Personalidade",
-        "int": "Inteligência",
-        "sab": "Sabedoria"
-      };
-    }
+    // Prepara as opções para o menu de seleção da Manifestação.
+    context.rollableAttributes = {
+      "per": "Personalidade",
+      "int": "Inteligência",
+      "sab": "Sabedoria"
+    };
 
-    context.enrichedDescription = await TextEditor.enrichHTML(context.system.description, {
-      async: true, secrets: this.item.isOwner, relativeTo: this.item
+    // Prepara as opções para o menu de seleção da Arma.
+    context.attackTypes = {
+      "melee": "Corpo a Corpo",
+      "ranged": "À Distância"
+    };
+
+    // A SOLUÇÃO: Prepara a descrição para o editor de texto rico.
+    context.enriched = {};
+    context.enriched.description = await TextEditor.enrichHTML(context.system.description, {
+      async: true,
+      secrets: this.item.isOwner,
+      relativeTo: this.item
     });
 
     return context;

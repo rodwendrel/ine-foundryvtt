@@ -1,50 +1,27 @@
 <form class="{{cssClass}}" autocomplete="off">
-
   <header class="sheet-header">
     <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     <div class="header-fields">
       <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Nome do Item" /></h1>
     </div>
   </header>
-
   <section class="sheet-body">
 
     {{#if (eq item.type "arma")}}
-    <div class="form-group">
-      <label>Dado de Dano</label>
-      <input type="text" name="system.damage" value="{{system.damage}}" />
-    </div>
+    {{> "systems/ine/templates/partials/items/_item-arma-fields.hbs"}}
     {{/if}}
 
     {{#if (eq item.type "armadura")}}
-    <div class="form-group">
-      <label>Bónus de Armadura</label>
-      <input type="text" name="system.armorBonus" value="{{system.armorBonus}}" data-dtype="Number" />
-    </div>
+    {{> "systems/ine/templates/partials/items/_item-armadura-fields.hbs"}}
     {{/if}}
 
     {{#if (eq item.type "manifestacao")}}
-    <div class="form-group">
-      <label>Custo de Sanidade</label>
-      <input type="text" name="system.custo" value="{{system.custo}}" data-dtype="Number" />
-    </div>
-    <div class="form-group">
-      <label>Dificuldade</label>
-      <input type="text" name="system.dificuldade" value="{{system.dificuldade}}" data-dtype="Number" />
-    </div>
-    <div class="form-group">
-      <label>Atributo de Rolagem</label>
-      <select name="system.atributo">
-        {{selectOptions rollableAttributes selected=system.atributo}}
-      </select>
-    </div>
+    {{> "systems/ine/templates/partials/items/_item-manifestacao-fields.hbs"}}
     {{/if}}
 
     <div class="form-group description">
       <label>Descrição</label>
       {{editor enriched.description target="system.description" button=true owner=owner editable=editable}}
     </div>
-
   </section>
-
 </form>

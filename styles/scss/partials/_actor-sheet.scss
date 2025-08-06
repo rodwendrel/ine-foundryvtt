@@ -130,14 +130,62 @@
     gap: 20px;
   }
 
-  // Estilos para as novas colunas
-  .attributes-column {
-    // Adicione aqui estilos específicos para a coluna de atributos, se desejar
-  }
-
   .main-column {
     display: flex;
     flex-direction: column;
     gap: 15px;
+  }
+}
+
+.ine.sheet.actor {
+  .attributes-column {
+    .progression-list {
+      margin-top: 20px; // Adiciona um espaço para separar dos atributos
+      display: flex;
+      flex-direction: column;
+
+      h3 {
+        border-bottom: 1px solid $color-accent;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      .xp-options {
+        display: grid;
+        grid-template-columns: 1fr; // Uma coluna de botões
+        gap: 5px;
+
+        button.xp-spend {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 8px;
+          background: $color-background-secondary;
+          color: $color-text-primary;
+          border: 1px solid $color-background-tertiary;
+          border-left: 3px solid $color-accent;
+          border-radius: 3px;
+          text-align: left;
+          font-family: $font-primary;
+          font-size: 1em;
+          line-height: 1.2;
+          width: 100%; 
+
+          &:hover {
+            background: $color-background-tertiary;
+            border-color: $color-accent-hover;
+            cursor: pointer;
+          }
+
+          .cost {
+            font-size: 0.9em;
+            opacity: 0.7;
+            white-space: nowrap; 
+            margin-left: 10px;
+          }
+        }
+      }
+    }
   }
 }
